@@ -1,0 +1,18 @@
+GET     /                                                     presentation.WakeUpController.index
+GET     /body-parts                                           presentation.BodyPartQueryController.index
+GET     /categories                                           presentation.CategoryQueryController.index
+#GET     /lift-types
+#POST    /lift-types
+#GET     /lift-types/user
+#GET     /lift-types/:lift-type-id
+#PATCH   /lift-types/:lift-type-id
+#DELETE  /lift-types/:lift-type-id
+#PUT     /lift-types/:lift-type-id/share
+#GET     /training-menu
+#POST    /training-menu
+#PUT     /training-menu/:training-menu-id
+#DELETE  /training-menu/:training-menu-id
+#PUT     /training-menu/:training-menu-id/actions
+#GET     /training-menu/:training-menu-id/lift-types
+#POST    /training-menu/:training-menu-id/lift-types
+#DELETE  /training-menu/:training-menu-id/lift-types
