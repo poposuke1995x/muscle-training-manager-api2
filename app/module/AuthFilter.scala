@@ -1,7 +1,7 @@
-package filters
+package module
 
-import app.getFirebaseUid
 import akka.stream.Materializer
+import app.getFirebaseUid
 import com.google.auth.oauth2.GoogleCredentials
 import com.google.firebase.{FirebaseApp, FirebaseOptions}
 import com.google.inject.Inject

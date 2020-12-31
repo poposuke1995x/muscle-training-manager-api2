@@ -1,3 +1,5 @@
+package module
+
 import com.google.inject.AbstractModule
 import domain.training.lifecycle.{LiftTypeRepositoryInterface, TrainingMenuRepositoryInterface}
 import domain.user.lifecycle.UserRepositoryInterface
