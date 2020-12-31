@@ -1,6 +1,6 @@
-package domain.training_menu.factory
+package domain.training.factory
 
-import domain.training_menu.entity.{LiftTypeEntity, LiftTypeName}
+import domain.training.entity.{LiftTypeEntity, LiftTypeName}
 import domain.{Action, Description, Id}
 
 case class LiftTypeFactory(

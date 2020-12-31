@@ -1,6 +1,6 @@
-package domain.training_menu.factory
+package domain.training.factory
 
-import domain.training_menu.entity.{TrainingMenuEntity, TrainingMenuName}
+import domain.training.entity.{TrainingMenuEntity, TrainingMenuName}
 import domain.{Description, Id}
 
 case class TrainingMenuFactory(

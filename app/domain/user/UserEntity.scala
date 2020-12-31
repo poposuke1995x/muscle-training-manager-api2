@@ -1,14 +1,14 @@
 package domain.user
 
 import domain.Id
-import domain.training_menu.lifecycle.LiftTypeModel
-import domain.training_menu.lifecycle.repositories.LiftTypeRepositoryInterface
+import domain.training.entity.LiftTypeEntity
+import domain.training.lifecycle.repositories.LiftTypeRepositoryInterface
 
 import scala.concurrent.Future
 
 case class UserEntity(id: Id, name: UserName, uid: FirebaseUid) {
-  def createLiftType(repository: LiftTypeRepositoryInterface)(liftTypeModel: LiftTypeModel): Future[Option[LiftTypeModel]] =
-    repository.insert(liftTypeModel)
+  def createLiftType(repository: LiftTypeRepositoryInterface)(liftTypeEntity: LiftTypeEntity): Future[Option[LiftTypeEntity]] =
+    repository.insert(liftTypeEntity)
 //
 //  def createTrainingMenu = ???
 //

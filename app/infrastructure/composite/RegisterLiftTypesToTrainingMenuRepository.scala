@@ -1,7 +1,7 @@
 //package infrastructure.composite
 //
 //
-//import infrastructure.datasource.Models
+//import infrastructure.datasource.Tables
 //import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 //import slick.jdbc.JdbcProfile
 //
@@ -10,7 +10,7 @@
 //
 //class RegisterLiftTypesToTrainingMenuRepository @Inject()(
 //    protected val dbConfigProvider: DatabaseConfigProvider,
-//    models: Models)(implicit executionContext: ExecutionContext)
+//    models: Tables)(implicit executionContext: ExecutionContext)
 //    extends HasDatabaseConfigProvider[JdbcProfile] with RegisterLiftTypesToTrainingMenuRepositoryInterface {
 //
 //  import profile.api._

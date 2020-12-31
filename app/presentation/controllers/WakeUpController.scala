@@ -1,4 +1,4 @@
-package presentation
+package presentation.controllers
 
 import com.google.inject.Inject
 import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents}

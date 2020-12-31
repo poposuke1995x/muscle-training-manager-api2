@@ -2,18 +2,14 @@ package domain.user
 
 import com.google.inject.Inject
 import domain.Id
-import domain.user.lifecycle.{UserModel, UserRepositoryInterface}
+import domain.user.lifecycle.UserRepositoryInterface
 
 import scala.concurrent.{ExecutionContext, Future}
 
 case class UserService @Inject()(repository: UserRepositoryInterface)(implicit ec: ExecutionContext) {
 
-  def createGuestUser(uid: FirebaseUid): Future[Option[UserEntity]] =
-    repository.insert {
-      UserModel(None, "guest", uid.value)
-    }.map {
-      _.flatMap(userModel => UserFactory(userModel.id.get, userModel.name, userModel.uid))
-    }
+  def createGuestUser(uid: FirebaseUid): Future[Option[Id]] =
+    repository.insert(UserName("guest").get, uid).map(_.map(_.id))
 
   def getUserId(uid: FirebaseUid): Future[Option[Id]] = repository.findIdByUid(uid)
 

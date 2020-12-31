@@ -1,9 +1,9 @@
 import com.google.inject.AbstractModule
-import domain.training_menu.lifecycle.repositories.{LiftTypeRepositoryInterface, TrainingMenuRepositoryInterface}
+import domain.training.lifecycle.repositories.{LiftTypeRepositoryInterface, TrainingMenuRepositoryInterface}
 import domain.user.lifecycle.UserRepositoryInterface
-import infrastructure.datasource.query.{BodyPartQueryService, CategoryQueryService}
+import infrastructure.datasource.query.{BodyPartQueryService, CategoryQueryService, TrainingMenuQueryService}
 import infrastructure.datasource.repository.{LiftTypeRepository, TrainingMenuRepository, UserRepository}
-import presentation.query_service.{BodyPartQueryServiceInterface, CategoryQueryServiceInterface}
+import presentation.query_service.{BodyPartQueryServiceInterface, CategoryQueryServiceInterface, TrainingMenuQueryServiceInterface}
 
 
 class DI extends AbstractModule {
@@ -13,6 +13,7 @@ class DI extends AbstractModule {
     bind(classOf[UserRepositoryInterface]).to(classOf[UserRepository])
     bind(classOf[LiftTypeRepositoryInterface]).to(classOf[LiftTypeRepository])
     bind(classOf[TrainingMenuRepositoryInterface]).to(classOf[TrainingMenuRepository])
+    bind(classOf[TrainingMenuQueryServiceInterface]).to(classOf[TrainingMenuQueryService])
 //    bind(classOf[LiftActionRepositoryInterface]).to(classOf[LiftActionRepository])
 //    bind(classOf[RegisterLiftTypesToTrainingMenuRepositoryInterface]).to(classOf[RegisterLiftTypesToTrainingMenuRepository])
 //    bind(classOf[DeleteLiftTypesFromTrainingMenuRepositoryInterface]).to(classOf[DeleteLiftTypesFromTrainingMenuRepository])

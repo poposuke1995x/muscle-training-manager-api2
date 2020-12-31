@@ -2,15 +2,15 @@ package domain.user
 
 import domain.Id
 
-case class UserFactory(id: Int, name: String, firebaseUid: String)
+case class UserFactory(id: Option[Int], name: String, firebaseUid: String)
 
 object UserFactory {
-  def apply(id: Int, name: String, firebaseUid: String): Option[UserEntity] =
+  def apply(id: Option[Int], name: String, firebaseUid: String): Option[UserEntity] =
     UserName(name).flatMap {
       nameValue =>
         FirebaseUid(firebaseUid).flatMap {
           firebaseUidValue =>
-            Id(id).map {
+            id.flatMap(Id(_)).map {
               idValue => UserEntity(idValue, nameValue, firebaseUidValue)
             }
         }

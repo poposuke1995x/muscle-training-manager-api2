@@ -1,7 +1,7 @@
-package domain.training_menu.service
+package domain.training.service
 
 import com.google.inject.Inject
-import domain.training_menu.lifecycle.repositories.LiftTypeRepositoryInterface
+import domain.training.lifecycle.repositories.LiftTypeRepositoryInterface
 
 import scala.concurrent.ExecutionContext
 

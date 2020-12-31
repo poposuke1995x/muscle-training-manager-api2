@@ -1,4 +1,4 @@
-package domain.training_menu.entity
+package domain.training.entity
 
 import domain.{Description, Id}
 

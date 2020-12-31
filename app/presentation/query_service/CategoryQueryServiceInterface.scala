@@ -1,5 +1,7 @@
 package presentation.query_service
 
+import presentation.CategoryResponseModel
+
 import scala.concurrent.Future
 
 trait CategoryQueryServiceInterface {

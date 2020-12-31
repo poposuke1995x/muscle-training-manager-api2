@@ -1,6 +1,6 @@
 package filters
 
-import Utils.getFirebaseUid
+import app.getFirebaseUid
 import akka.stream.Materializer
 import com.google.auth.oauth2.GoogleCredentials
 import com.google.firebase.{FirebaseApp, FirebaseOptions}
@@ -33,6 +33,8 @@ class AuthFilter @Inject()(config: Configuration, userService: UserService)(
   def apply(nextFilter: RequestHeader => Future[Result])(rh: RequestHeader): Future[Result] =
     rh.path match {
       case "/" => nextFilter(rh)
+      case "/body-parts" => nextFilter(rh)
+      case "/categories" => nextFilter(rh)
       case _ => filterByFirebaseAuth(nextFilter)(rh)
     }
 
@@ -47,9 +49,9 @@ class AuthFilter @Inject()(config: Configuration, userService: UserService)(
 
   def addUserIdToHeader(uid: FirebaseUid): Future[Either[Result, (String, String)]] = {
     userService.getUserId(uid).flatMap {
-      case Some(id) => Future(Right(("user_id", id.toString)))
+      case Some(id) => Future(Right(("user_id", id.value.toString)))
       case None => userService.createGuestUser(uid).map {
-        case Some(userId) => Right(("user_id", userId.toString))
+        case Some(userId) => Right(("user_id", userId.value.toString))
         case None => Left(InternalServerError)
       }
     }

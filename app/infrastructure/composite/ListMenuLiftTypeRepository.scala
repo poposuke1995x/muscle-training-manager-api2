@@ -1,14 +1,14 @@
 //package infrastructure.composite
 //
 //import com.google.inject.Inject
-//import infrastructure.datasource.Models
+//import infrastructure.datasource.Tables
 //import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 //import slick.jdbc.JdbcProfile
 //
 //import scala.concurrent.{ExecutionContext, Future}
 //
 //class ListMenuLiftTypeRepository @Inject()
-//(protected val dbConfigProvider: DatabaseConfigProvider, models: Models)(implicit executionContext: ExecutionContext)
+//(protected val dbConfigProvider: DatabaseConfigProvider, models: Tables)(implicit executionContext: ExecutionContext)
 //    extends HasDatabaseConfigProvider[JdbcProfile] with ListMenuLiftTypeRepositoryInterface {
 //
 //  import profile.api._

@@ -1,13 +1,13 @@
 //package infrastructure.datasource.repository
 //
-//import infrastructure.datasource.Models
+//import infrastructure.datasource.Tables
 //import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 //import slick.jdbc.JdbcProfile
 //
 //import javax.inject.Inject
 //import scala.concurrent.{ExecutionContext, Future}
 //
-//class LiftActionRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, models: Models)
+//class LiftActionRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, models: Tables)
 //    (implicit executionContext: ExecutionContext)
 //    extends HasDatabaseConfigProvider[JdbcProfile] with LiftActionRepositoryInterface {
 //

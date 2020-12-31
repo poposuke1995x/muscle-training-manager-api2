@@ -1,5 +1,7 @@
 package presentation.query_service
 
+import presentation.BodyPartResponseModel
+
 import scala.concurrent.Future
 
 trait BodyPartQueryServiceInterface {
