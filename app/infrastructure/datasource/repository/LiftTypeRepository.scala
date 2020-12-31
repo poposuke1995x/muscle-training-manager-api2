@@ -3,7 +3,7 @@ package infrastructure.datasource.repository
 import com.google.inject.Inject
 import domain.Id
 import domain.training.entity.LiftTypeEntity
-import domain.training.lifecycle.repositories.LiftTypeRepositoryInterface
+import domain.training.lifecycle.LiftTypeRepositoryInterface
 import infrastructure.datasource.{LiftTypeModel, Tables}
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile

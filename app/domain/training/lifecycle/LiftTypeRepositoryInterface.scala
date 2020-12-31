@@ -1,4 +1,4 @@
-package domain.training.lifecycle.repositories
+package domain.training.lifecycle
 
 import domain.Id
 import domain.training.entity.LiftTypeEntity

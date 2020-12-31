@@ -1,5 +1,4 @@
-package domain.training.lifecycle.repositories
-
+package domain.training.lifecycle
 
 import domain.training.entity.TrainingMenuEntity
 

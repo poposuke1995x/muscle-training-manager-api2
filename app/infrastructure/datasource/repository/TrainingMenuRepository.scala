@@ -1,7 +1,7 @@
 package infrastructure.datasource.repository
 
 import domain.training.entity.TrainingMenuEntity
-import domain.training.lifecycle.repositories.TrainingMenuRepositoryInterface
+import domain.training.lifecycle.TrainingMenuRepositoryInterface
 import infrastructure.datasource.{Tables, TrainingMenuModel}
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile

@@ -1,5 +1,5 @@
 import com.google.inject.AbstractModule
-import domain.training.lifecycle.repositories.{LiftTypeRepositoryInterface, TrainingMenuRepositoryInterface}
+import domain.training.lifecycle.{LiftTypeRepositoryInterface, TrainingMenuRepositoryInterface}
 import domain.user.lifecycle.UserRepositoryInterface
 import infrastructure.datasource.query.{BodyPartQueryService, CategoryQueryService, TrainingMenuQueryService}
 import infrastructure.datasource.repository.{LiftTypeRepository, TrainingMenuRepository, UserRepository}
