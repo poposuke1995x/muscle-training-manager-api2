@@ -9,7 +9,7 @@ RUN curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fishe
 RUN ["/usr/bin/fish", "-c", "fisher install jethrokuan/fzf"]
 RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0
 RUN ["/usr/bin/fish", "-c", "mkdir -p ~/.config/fish/completions; and cp ~/.asdf/completions/asdf.fish ~/.config/fish/completions"]
-RUN ["/usr/bin/fish", "-c", "source ~/.asdf/asdf.fish && asdf plugin-add java https://github.com/halcyon/asdf-java.git && asdf install java graalvm-20.3.0+java11 && asdf global java graalvm-20.3.0+java11"]
+RUN ["/usr/bin/fish", "-c", "source ~/.asdf/asdf.fish && asdf plugin-add java && asdf install java graalvm-20.3.0+java11 && asdf global java graalvm-20.3.0+java11"]
 RUN ["/usr/bin/fish", "-c", "source ~/.asdf/asdf.fish && asdf plugin-add sbt && asdf install sbt 1.4.5 && asdf global sbt 1.4.5"]
 COPY config.fish /root/.config/fish/
 COPY ./.vimrc /root/
