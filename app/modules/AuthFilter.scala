@@ -1,4 +1,4 @@
-package module
+package modules
 
 import akka.stream.Materializer
 import app.getFirebaseUid

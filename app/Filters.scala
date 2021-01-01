@@ -1,5 +1,5 @@
 import com.google.inject.Inject
-import module.AuthFilter
+import modules.AuthFilter
 import play.api.http.HttpFilters
 import play.filters.cors.CORSFilter
 
