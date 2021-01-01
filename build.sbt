@@ -19,7 +19,7 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 scalaVersion := "2.13.4"
 
 libraryDependencies ++= Seq(
-  guice, filters,
+  guice, filters,jdbc,evolutions,
   "com.google.firebase" % "firebase-admin" % "6.8.1",
   "org.postgresql" % "postgresql" % "42.2.18",
   "com.typesafe.play" %% "play-slick" % "5.0.0",
