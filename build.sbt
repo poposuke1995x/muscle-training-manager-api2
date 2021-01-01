@@ -43,4 +43,3 @@ libraryDependencies ++= Seq(
   "javax.xml.bind" % "jaxb-api" % "2.3.0",
   "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test
 )
-javaOptions += "-Dakka.http.parsing.max-header-value-length=16k"
