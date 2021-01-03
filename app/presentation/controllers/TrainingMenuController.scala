@@ -25,7 +25,7 @@ class TrainingMenuController @Inject()
       case Some(uid) => userService.getUserId(uid).flatMap {
         case None => Future(InternalServerError)
         case Some(userId) =>
-          trainingMenuQueryService.findByUserId(userId).map(result => Ok(result.map(TrainingMenuResponseModel.fromEntity(_).asJson).asJson))
+          trainingMenuQueryService.findByUserId(userId).map(result => Ok(result.map(TrainingMenuResponseModel.fromEntity).asJson))
       }
     }
   }

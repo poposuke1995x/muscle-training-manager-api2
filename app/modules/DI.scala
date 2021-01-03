@@ -3,19 +3,20 @@ package modules
 import com.google.inject.AbstractModule
 import domain.training.lifecycle.{LiftTypeRepositoryInterface, TrainingMenuRepositoryInterface}
 import domain.user.lifecycle.UserRepositoryInterface
-import infrastructure.datasource.query.{BodyPartQueryService, CategoryQueryService, TrainingMenuQueryService}
+import infrastructure.datasource.query.{BodyPartQueryService, CategoryQueryService, LiftTypeQueryService, TrainingMenuQueryService}
 import infrastructure.datasource.repository.{LiftTypeRepository, TrainingMenuRepository, UserRepository}
-import presentation.query_service.{BodyPartQueryServiceInterface, CategoryQueryServiceInterface, TrainingMenuQueryServiceInterface}
+import presentation.query_service.{BodyPartQueryServiceInterface, CategoryQueryServiceInterface, LiftTypeQueryServiceInterface, TrainingMenuQueryServiceInterface}
 
 
 class DI extends AbstractModule {
   override def configure(): Unit = {
     bind(classOf[BodyPartQueryServiceInterface]).to(classOf[BodyPartQueryService])
     bind(classOf[CategoryQueryServiceInterface]).to(classOf[CategoryQueryService])
+    bind(classOf[TrainingMenuQueryServiceInterface]).to(classOf[TrainingMenuQueryService])
+    bind(classOf[LiftTypeQueryServiceInterface]).to(classOf[LiftTypeQueryService])
     bind(classOf[UserRepositoryInterface]).to(classOf[UserRepository])
     bind(classOf[LiftTypeRepositoryInterface]).to(classOf[LiftTypeRepository])
     bind(classOf[TrainingMenuRepositoryInterface]).to(classOf[TrainingMenuRepository])
-    bind(classOf[TrainingMenuQueryServiceInterface]).to(classOf[TrainingMenuQueryService])
 //    bind(classOf[LiftActionRepositoryInterface]).to(classOf[LiftActionRepository])
 //    bind(classOf[RegisterLiftTypesToTrainingMenuRepositoryInterface]).to(classOf[RegisterLiftTypesToTrainingMenuRepository])
 //    bind(classOf[DeleteLiftTypesFromTrainingMenuRepositoryInterface]).to(classOf[DeleteLiftTypesFromTrainingMenuRepository])

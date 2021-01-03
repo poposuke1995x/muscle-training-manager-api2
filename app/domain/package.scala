@@ -25,14 +25,21 @@ package object domain {
   }
 
   case class Action(
-      rep: Option[NaturalNumberAndZero],
-      weight: Option[NaturalNumberAndZero],
-      setCount: Option[NaturalNumberAndZero]
+      rep: NaturalNumberAndZero,
+      weight: NaturalNumberAndZero,
+      setCount: NaturalNumberAndZero
   )
 
   object Action {
-    def apply(rep: Int, weight: Int, setCount: Int): Action =
-      Action(NaturalNumberAndZero(rep), NaturalNumberAndZero(weight), NaturalNumberAndZero(setCount))
+    def apply(rep: Int, weight: Int, setCount: Int): Option[Action] =
+      NaturalNumberAndZero(rep).flatMap(rep => NaturalNumberAndZero(weight).flatMap {
+        weight =>
+          NaturalNumberAndZero(setCount).map {
+            setCount => new Action(rep, weight, setCount)
+          }
+      })
+
+
   }
 
 }

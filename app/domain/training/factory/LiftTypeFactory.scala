@@ -26,16 +26,19 @@ object LiftTypeFactory {
       defaultWeight: Int = 0,
       defaultSetCount: Int = 0,
       shareFlag: Boolean = false): Option[LiftTypeEntity] =
-    LiftTypeName(name).flatMap(eName => Id(userId).map {
+    LiftTypeName(name).flatMap(eName => Id(userId).flatMap {
       eUserId =>
-        LiftTypeEntity(
-          id.flatMap(Id(_)),
-          eName,
-          referenceUrl,
-          description.flatMap(Description(_)),
-          eUserId,
-          Action(defaultRep, defaultWeight, defaultSetCount),
-          shareFlag
-        )
+        Action(defaultRep, defaultWeight, defaultSetCount).map {
+          action =>
+            LiftTypeEntity(
+              id.flatMap(Id(_)),
+              eName,
+              referenceUrl,
+              description.flatMap(Description(_)),
+              eUserId,
+              action,
+              shareFlag
+            )
+        }
     })
 }

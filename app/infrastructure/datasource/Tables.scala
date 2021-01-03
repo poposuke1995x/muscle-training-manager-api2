@@ -130,9 +130,9 @@ class Tables @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
       liftTypeEntity.referenceUrl,
       liftTypeEntity.description.map(_.value),
       liftTypeEntity.userId.value,
-      liftTypeEntity.defaultAction.rep.get.value,
-      liftTypeEntity.defaultAction.weight.get.value,
-      liftTypeEntity.defaultAction.setCount.get.value,
+      liftTypeEntity.defaultAction.rep.value,
+      liftTypeEntity.defaultAction.weight.value,
+      liftTypeEntity.defaultAction.setCount.value,
       liftTypeEntity.shareFlag
     )
   }

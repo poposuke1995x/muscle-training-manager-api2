@@ -17,6 +17,6 @@ class BodyPartQueryController @Inject()
 
   def index: Action[AnyContent] = Action.async {
     bodyPartQueryServiceInterface.index
-        .map(result => Ok(result.map(_.asJson).asJson))
+        .map(result => Ok(result.asJson))
   }
 }

@@ -16,6 +16,6 @@ class CategoryQueryController @Inject()
 
   def index: Action[AnyContent] = Action.async {
     categoryQueryService.index
-        .map(result => Ok(result.map(_.asJson).asJson))
+        .map(result => Ok(result.asJson))
   }
 }

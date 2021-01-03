@@ -1,10 +1,9 @@
 package infrastructure.datasource.repository
 
 import com.google.inject.Inject
-import domain.Id
 import domain.training.entity.LiftTypeEntity
 import domain.training.lifecycle.LiftTypeRepositoryInterface
-import infrastructure.datasource.{LiftTypeModel, Tables}
+import infrastructure.datasource.Tables
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 
@@ -17,14 +16,6 @@ class LiftTypeRepository @Inject()(protected val dbConfigProvider: DatabaseConfi
   import profile.api._
 
   private val LiftTypes = TableQuery[tables.LiftTypesTable]
-
-  def index: Future[List[LiftTypeEntity]] = db.run(LiftTypes.result).map(_.toList).map(_.map(_.toEntity.get))
-
-  def findById(id: Id): Future[Option[LiftTypeEntity]] =
-    db.run(LiftTypes.filter(_.id === id.value).result.headOption).map(_.flatMap(_.toEntity))
-
-  def findByUserId(userId: Int): Future[List[LiftTypeEntity]] =
-    db.run(LiftTypes.filter(_.userId === userId).result).map(_.toList).map(_.map(_.toEntity.get))
 
   def insert(liftType: LiftTypeEntity): Future[Option[LiftTypeEntity]] = Option {
     db.run(LiftTypes returning LiftTypes += tables.LiftTypesTable.fromEntity(liftType))

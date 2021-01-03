@@ -5,7 +5,8 @@ import play.api.mvc.RequestHeader
 package object app {
   def getIdToken[T <: RequestHeader](rh: T): Option[String] = rh.headers.get("Authorization")
 
-  def getFirebaseUid[T <: RequestHeader](rh: T): Option[FirebaseUid] = getIdToken(rh).flatMap(getFirebaseUid)
+  def getFirebaseUid[T <: RequestHeader](rh: T): Option[FirebaseUid] =
+    getIdToken(rh).flatMap(getFirebaseUid)
 
   private def getFirebaseUid(idToken: String): Option[FirebaseUid] =
     try FirebaseUid(FirebaseAuth.getInstance.verifyIdToken(idToken).getUid)
