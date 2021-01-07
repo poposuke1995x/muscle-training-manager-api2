@@ -1,6 +1,6 @@
 package domain.training.entity
 
-import domain.{Action, Description, Id}
+import domain.support.{Action, Description, Id}
 
 case class LiftTypeEntity(
     id: Option[Id],

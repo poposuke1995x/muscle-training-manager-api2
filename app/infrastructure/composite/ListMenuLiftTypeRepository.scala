@@ -8,8 +8,8 @@
 //import scala.concurrent.{ExecutionContext, Future}
 //
 //class ListMenuLiftTypeRepository @Inject()
-//(protected val dbConfigProvider: DatabaseConfigProvider, models: Tables)(implicit executionContext: ExecutionContext)
-//    extends HasDatabaseConfigProvider[JdbcProfile] with ListMenuLiftTypeRepositoryInterface {
+//(protected val dbConfigProvider: DatabaseConfigProvider, models: Tables)(implicit ec: ExecutionContext)
+//    extends HasDatabaseConfigProvider[JdbcProfile] {
 //
 //  import profile.api._
 //

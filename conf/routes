@@ -1,17 +1,17 @@
 GET     /                                              presentation.controllers.WakeUpController.index
 GET     /body-parts                                    presentation.controllers.BodyPartQueryController.index
 GET     /categories                                    presentation.controllers.CategoryQueryController.index
-GET     /lift-types                                    presentation.controllers.LiftTypeController.index(published: Boolean ?=false)
-#POST    /lift-types
+GET     /lift-types                                    presentation.controllers.LiftTypeController.index(published: Boolean ?= false)
+POST    /lift-types                                    presentation.controllers.LiftTypeController.create
 GET     /lift-types/:liftTypeId                        presentation.controllers.LiftTypeController.show(liftTypeId: Int)
 #PATCH   /lift-types/:lift-type-id
-#DELETE  /lift-types/:lift-type-id
+DELETE  /lift-types/:liftYypeId                        presentation.controllers.LiftTypeController.delete(liftTypeId: Int)
 #PUT     /lift-types/:lift-type-id/share
 GET     /training-menu                                 presentation.controllers.TrainingMenuController.index
-#POST    /training-menu
+POST    /training-menu                                 presentation.controllers.TrainingMenuController.create
 #PUT     /training-menu/:training-menu-id
-#DELETE  /training-menu/:training-menu-id
+DELETE  /training-menu/:trainingMenuId                 presentation.controllers.TrainingMenuController.delete(trainingMenuId: Int)
 #PUT     /training-menu/:training-menu-id/actions
-#GET     /training-menu/:training-menu-id/lift-types
+GET     /training-menu/:trainingMenuId/lift-types      presentation.controllers.TrainingMenuController.showLiftTypes(trainingMenuId: Int)
 #POST    /training-menu/:training-menu-id/lift-types
 #DELETE  /training-menu/:training-menu-id/lift-types

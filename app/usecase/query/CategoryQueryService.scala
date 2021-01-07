@@ -1,10 +1,10 @@
-package presentation.query_service
+package usecase.query
 
-import presentation.CategoryResponseModel
+import usecase.dto.CategoryResponseModel
 
 import scala.concurrent.Future
 
-trait CategoryQueryServiceInterface {
+trait CategoryQueryService{
   def index: Future[List[CategoryResponseModel]]
   def findById(id: Int): Future[Option[CategoryResponseModel]]
 }

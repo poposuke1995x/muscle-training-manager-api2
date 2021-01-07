@@ -3,16 +3,16 @@ package infrastructure.datasource.query
 
 import infrastructure.datasource.Tables
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
-import presentation.CategoryResponseModel
-import presentation.query_service.CategoryQueryServiceInterface
 import slick.jdbc.JdbcProfile
+import usecase.dto.CategoryResponseModel
+import usecase.query.CategoryQueryService
 
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
-class CategoryQueryService @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(tables: Tables)
-    (implicit executionContext: ExecutionContext)
-    extends HasDatabaseConfigProvider[JdbcProfile] with CategoryQueryServiceInterface {
+class CategoryQueryServiceImpl @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(tables: Tables)
+    (implicit ec: ExecutionContext)
+    extends HasDatabaseConfigProvider[JdbcProfile] with CategoryQueryService {
 
   import profile.api._
 

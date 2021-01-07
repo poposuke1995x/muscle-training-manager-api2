@@ -1,8 +1,8 @@
 package infrastructure.datasource.repository
 
 import com.google.inject.Inject
-import domain.Id
-import domain.user.lifecycle.UserRepositoryInterface
+import domain.support.Id
+import domain.user.lifecycle.UserRepository
 import domain.user.{FirebaseUid, UserEntity, UserName}
 import infrastructure.datasource.{Tables, UserModel}
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
@@ -10,10 +10,10 @@ import slick.jdbc.JdbcProfile
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class UserRepository @Inject()(tables: Tables)
+class UserRepositoryImpl @Inject()(tables: Tables)
     (protected val dbConfigProvider: DatabaseConfigProvider)
-    (implicit executionContext: ExecutionContext)
-    extends HasDatabaseConfigProvider[JdbcProfile] with UserRepositoryInterface {
+    (implicit ec: ExecutionContext)
+    extends HasDatabaseConfigProvider[JdbcProfile] with UserRepository {
 
   import profile.api._
 
@@ -25,6 +25,10 @@ class UserRepository @Inject()(tables: Tables)
   ).map {
     _.flatten.flatMap(Id(_))
   }
+
+  def findUserByUid(uid: FirebaseUid): Future[Option[UserEntity]] = db.run(
+    Users.filter(_.firebase_uid === uid.value).result.headOption
+  ).map(_.flatMap(_.toEntity))
 
   def insert(name: UserName, uid: FirebaseUid): Future[Option[UserEntity]] =
     Option {

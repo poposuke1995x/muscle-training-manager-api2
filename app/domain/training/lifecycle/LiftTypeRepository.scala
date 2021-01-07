@@ -1,10 +1,11 @@
 package domain.training.lifecycle
 
+import domain.support.Id
 import domain.training.entity.LiftTypeEntity
 
 import scala.concurrent.Future
 
-trait LiftTypeRepositoryInterface {
+trait LiftTypeRepository {
   def insert(liftType: LiftTypeEntity): Future[Option[LiftTypeEntity]]
 
   def update(liftType: LiftTypeEntity): Future[Option[LiftTypeEntity]]
@@ -15,7 +16,7 @@ trait LiftTypeRepositoryInterface {
       defaultSetCount: Int,
       defaultWeight: Int): Future[Option[(Int, Int, Int, Int)]]
 
-  def share(liftTypeId: Int): Future[Int]
+  def share(liftTypeId: Id): Future[Int]
 
-  def delete(id: Int): Future[Boolean]
+  def delete(liftTypeId: Id)(userId: Id): Future[Boolean]
 }

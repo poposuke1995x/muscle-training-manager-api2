@@ -10,7 +10,7 @@
 //
 //class RegisterLiftTypesToTrainingMenuRepository @Inject()(
 //    protected val dbConfigProvider: DatabaseConfigProvider,
-//    models: Tables)(implicit executionContext: ExecutionContext)
+//    models: Tables)(implicit ec: ExecutionContext)
 //    extends HasDatabaseConfigProvider[JdbcProfile] with RegisterLiftTypesToTrainingMenuRepositoryInterface {
 //
 //  import profile.api._

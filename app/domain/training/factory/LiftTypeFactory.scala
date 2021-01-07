@@ -1,7 +1,7 @@
 package domain.training.factory
 
 import domain.training.entity.{LiftTypeEntity, LiftTypeName}
-import domain.{Action, Description, Id}
+import domain.support.{Action, Description, Id}
 
 case class LiftTypeFactory(
     id: Option[Int],

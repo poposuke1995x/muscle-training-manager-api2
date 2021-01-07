@@ -1,6 +1,6 @@
 package domain.user
 
-import domain.Id
+import domain.support.Id
 
 case class UserFactory(id: Option[Int], name: String, firebaseUid: String)
 

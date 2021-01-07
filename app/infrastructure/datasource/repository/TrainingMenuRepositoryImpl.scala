@@ -1,17 +1,18 @@
 package infrastructure.datasource.repository
 
+import domain.support.Id
 import domain.training.entity.TrainingMenuEntity
-import domain.training.lifecycle.TrainingMenuRepositoryInterface
-import infrastructure.datasource.{Tables, TrainingMenuModel}
+import domain.training.lifecycle.TrainingMenuRepository
+import infrastructure.datasource.Tables
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
-class TrainingMenuRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(tables: Tables)
-    (implicit executionContext: ExecutionContext)
-    extends HasDatabaseConfigProvider[JdbcProfile] with TrainingMenuRepositoryInterface {
+class TrainingMenuRepositoryImpl @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(tables: Tables)
+    (implicit ec: ExecutionContext)
+    extends HasDatabaseConfigProvider[JdbcProfile] with TrainingMenuRepository {
 
   import profile.api._
 
@@ -37,10 +38,11 @@ class TrainingMenuRepository @Inject()(protected val dbConfigProvider: DatabaseC
       case _ => Some(trainingMenu)
     }
 
-  def delete(id: Int): Future[Boolean] = db.run(TrainingMenuObj.filter(_.id === id).delete).map {
-    case 0 => false
-    case _ => true
-  }
+  def delete(menuId: Id)(userId: Id): Future[Boolean] =
+    db.run(TrainingMenuObj.filter(_.id === menuId.value).filter(_.userId === userId.value).delete).map {
+      case 0 => false
+      case _ => true
+    }
 
 
 }

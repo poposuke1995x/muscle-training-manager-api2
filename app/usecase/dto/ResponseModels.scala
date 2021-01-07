@@ -1,7 +1,6 @@
-package presentation
+package usecase.dto
 
 import domain.training.entity.{LiftTypeEntity, TrainingMenuEntity}
-import infrastructure.datasource.TrainingMenuModel
 
 case class BodyPartResponseModel(id: Option[Int], name: String, categoryId: Int)
 
@@ -16,7 +15,7 @@ case class TrainingMenuResponseModel(
 )
 
 object TrainingMenuResponseModel {
-  def fromEntity(entity: TrainingMenuEntity): TrainingMenuModel = TrainingMenuModel(
+  def fromEntity(entity: TrainingMenuEntity): TrainingMenuResponseModel = TrainingMenuResponseModel(
     entity.id.map(_.value),
     entity.name.value,
     entity.description.map(_.value),
@@ -50,11 +49,3 @@ object LiftTypeResponseModel {
     entity.shareFlag: Boolean
   )
 }
-
-//object BodyPartResponseModel{
-//  //  implicit val jsonConfig: Configuration = Configuration.default.withSnakeCaseMemberNames
-//  //  implicit val userNameDecoder: Decoder[BodyPartResponseModel] = deriveConfiguredDecoder
-//  //  implicit val userNameEncoder: Encoder[BodyPartResponseModel] = deriveConfiguredEncoder
-//  implicit val encoder: Encoder[BodyPartResponseModel] = deriveEncoder
-//  implicit val decoder: Decoder[BodyPartResponseModel] = deriveDecoder
-//}

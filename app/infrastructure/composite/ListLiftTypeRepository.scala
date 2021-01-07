@@ -8,7 +8,7 @@
 //import scala.concurrent.{ExecutionContext, Future}
 //
 //class ListLiftTypeRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, models: Tables)
-//    (implicit executionContext: ExecutionContext)
+//    (implicit ec: ExecutionContext)
 //    extends HasDatabaseConfigProvider[JdbcProfile] with ListLiftTypeRepositoryInterface {
 //
 //  import profile.api._

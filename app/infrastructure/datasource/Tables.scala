@@ -5,13 +5,13 @@ import com.google.inject.Inject
 import domain.training.entity.{LiftTypeEntity, TrainingMenuEntity}
 import domain.user.UserEntity
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
-import presentation.{BodyPartResponseModel, CategoryResponseModel}
 import slick.jdbc.JdbcProfile
+import usecase.dto.{BodyPartResponseModel, CategoryResponseModel}
 
 import scala.concurrent.ExecutionContext
 
 class Tables @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
-    (implicit executionContext: ExecutionContext)
+    (implicit ec: ExecutionContext)
     extends HasDatabaseConfigProvider[JdbcProfile] {
 
   import profile.api._

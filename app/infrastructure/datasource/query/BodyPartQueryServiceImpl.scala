@@ -3,15 +3,15 @@ package infrastructure.datasource.query
 import com.google.inject.Inject
 import infrastructure.datasource.Tables
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
-import presentation.BodyPartResponseModel
-import presentation.query_service.BodyPartQueryServiceInterface
+import usecase.query.BodyPartQueryService
 import slick.jdbc.JdbcProfile
+import usecase.dto.BodyPartResponseModel
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class BodyPartQueryService @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(tables: Tables)
-    (implicit executionContext: ExecutionContext)
-    extends HasDatabaseConfigProvider[JdbcProfile] with BodyPartQueryServiceInterface {
+class BodyPartQueryServiceImpl @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(tables: Tables)
+    (implicit ec: ExecutionContext)
+    extends HasDatabaseConfigProvider[JdbcProfile] with BodyPartQueryService {
 
   import profile.api._
 

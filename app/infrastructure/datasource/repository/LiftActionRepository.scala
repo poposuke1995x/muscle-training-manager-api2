@@ -8,7 +8,7 @@
 //import scala.concurrent.{ExecutionContext, Future}
 //
 //class LiftActionRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, models: Tables)
-//    (implicit executionContext: ExecutionContext)
+//    (implicit ec: ExecutionContext)
 //    extends HasDatabaseConfigProvider[JdbcProfile] with LiftActionRepositoryInterface {
 //
 //  import profile.api._

@@ -1,7 +1,7 @@
 package domain.training.factory
 
 import domain.training.entity.{TrainingMenuEntity, TrainingMenuName}
-import domain.{Description, Id}
+import domain.support.{Description, Id}
 
 case class TrainingMenuFactory(
     id: Option[Int],

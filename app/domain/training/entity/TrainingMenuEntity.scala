@@ -1,6 +1,6 @@
 package domain.training.entity
 
-import domain.{Description, Id}
+import domain.support.{Description, Id}
 
 case class TrainingMenuEntity(
     id: Option[Id],
