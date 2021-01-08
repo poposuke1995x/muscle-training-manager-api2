@@ -5,7 +5,7 @@ GET     /lift-types                                    presentation.controllers.
 POST    /lift-types                                    presentation.controllers.LiftTypeController.create
 GET     /lift-types/:liftTypeId                        presentation.controllers.LiftTypeController.show(liftTypeId: Int)
 #PATCH   /lift-types/:lift-type-id
-DELETE  /lift-types/:liftYypeId                        presentation.controllers.LiftTypeController.delete(liftTypeId: Int)
+DELETE  /lift-types/:liftTypeId                        presentation.controllers.LiftTypeController.delete(liftTypeId: Int)
 #PUT     /lift-types/:lift-type-id/share
 GET     /training-menu                                 presentation.controllers.TrainingMenuController.index
 POST    /training-menu                                 presentation.controllers.TrainingMenuController.create
