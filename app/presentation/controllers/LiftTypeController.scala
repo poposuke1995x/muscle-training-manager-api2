@@ -22,7 +22,7 @@ class LiftTypeController @Inject()
 
 
   def index(published: Boolean): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    getFirebaseUidAction(request) { uid => {
+    getFirebaseUidAction(request.headers) { uid => {
       if (published) liftTypeQueryService.findPublished(uid)
       else liftTypeQueryService.findByUserId(uid)
     }.map { result => Ok(result.map(LiftTypeResponseModel.fromEntity).asJson) }
@@ -37,24 +37,19 @@ class LiftTypeController @Inject()
     }
   }
 
-  def create: Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    getFirebaseUidAction(request) {
+  def create: Action[LiftTypeRequestModel] = Action.async(circe.tolerantJson[LiftTypeRequestModel]) { request =>
+    getFirebaseUidAction(request.headers) {
       uid =>
-        request.body.asJson.flatMap {
-          json =>
-            decode[LiftTypeRequestModel](json.toString) match {
-              case Left(_) => None
-              case Right(value) => Some(value)
-            }
-        } match {
-          case None => Future.successful(BadRequest)
-          case Some(value) => createLiftTypeUseCase(uid)(value).map { result => Ok(result.asJson) }
+        createLiftTypeUseCase(uid)(request.body).map {
+          case Left(err) => InternalServerError(err.toString)
+          case Right(result) => Ok(result.asJson)
         }
     }
   }
 
+
   def delete(liftTypeId: Int): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    getFirebaseUidAction(request) {
+    getFirebaseUidAction(request.headers) {
       uid =>
         Id(liftTypeId) match {
           case None => Future.successful(BadRequest)

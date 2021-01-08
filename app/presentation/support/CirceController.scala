@@ -17,8 +17,8 @@ abstract class CirceController @Inject()
 (cc: ControllerComponents)
     (implicit ec: ExecutionContext) extends AbstractController(cc) with Circe {
 
-  def getFirebaseUidAction(request: Request[AnyContent])(f: FirebaseUid => Future[Result]): Future[Result] =
-    getFirebaseUid(request) match {
+  def getFirebaseUidAction(headers: Headers)(f: FirebaseUid => Future[Result]): Future[Result] =
+    getFirebaseUid(headers) match {
       case None => Future(Forbidden)
       case Some(uid) => f(uid)
     }

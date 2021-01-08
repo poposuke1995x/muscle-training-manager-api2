@@ -21,7 +21,7 @@ class TrainingMenuController @Inject()
 )(cc: ControllerComponents)(implicit ec: ExecutionContext) extends CirceController(cc) {
 
   def index: Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    getFirebaseUidAction(request) { uid =>
+    getFirebaseUidAction(request.headers) { uid =>
       trainingMenuQueryService
           .findByUserId(uid)
           .map { result => Ok(result.map(TrainingMenuResponseModel.fromEntity).asJson) }
@@ -29,7 +29,7 @@ class TrainingMenuController @Inject()
   }
 
   def showLiftTypes(menuId: Int): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    getFirebaseUidAction(request) { uid =>
+    getFirebaseUidAction(request.headers) { uid =>
       Id(menuId) match {
         case None => Future.successful(BadRequest)
         case Some(value) => trainingMenuQueryService
@@ -39,24 +39,19 @@ class TrainingMenuController @Inject()
     }
   }
 
-  def create: Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    getFirebaseUidAction(request) { uid =>
-      request.body.asJson.flatMap {
-        json =>
-          decode[TrainingMenuRequestModel](json.toString) match {
-            case Left(_) => None
-            case Right(value) => Some(value)
-          }
-      } match {
-        case None => Future.successful(BadRequest)
-        case Some(value) => createTrainingMenuUseCase(uid)(value).map { result => Ok(result.asJson) }
+  def create: Action[TrainingMenuRequestModel] = Action.async(circe.tolerantJson[TrainingMenuRequestModel]) { request =>
+    getFirebaseUidAction(request.headers) { uid =>
+      createTrainingMenuUseCase(uid)(request.body).map {
+        case Left(err) => InternalServerError(err.toString)
+        case Right(result) => Ok(result.asJson)
       }
-
     }
+
+
   }
 
   def delete(trainingMenuId: Int): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    getFirebaseUidAction(request) {
+    getFirebaseUidAction(request.headers) {
       uid =>
         Id(trainingMenuId) match {
           case None => Future.successful(BadRequest)

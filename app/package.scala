@@ -1,12 +1,12 @@
 import com.google.firebase.auth.{FirebaseAuth, FirebaseAuthException}
 import domain.user.FirebaseUid
-import play.api.mvc.RequestHeader
+import play.api.mvc.Headers
 
 package object app {
-  def getIdToken[T <: RequestHeader](rh: T): Option[String] = rh.headers.get("Authorization")
+  def getIdToken(headers: Headers): Option[String] = headers.get("Authorization")
 
-  def getFirebaseUid[T <: RequestHeader](rh: T): Option[FirebaseUid] =
-    getIdToken(rh).flatMap(getFirebaseUid)
+  def getFirebaseUid(headers: Headers): Option[FirebaseUid] =
+    getIdToken(headers).flatMap(getFirebaseUid)
 
   private def getFirebaseUid(idToken: String): Option[FirebaseUid] =
     try FirebaseUid(FirebaseAuth.getInstance.verifyIdToken(idToken).getUid)

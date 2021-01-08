@@ -39,7 +39,7 @@ class AuthFilter @Inject()(config: Configuration, userService: UserService)(
     }
 
   def filterByFirebaseAuth(nextFilter: RequestHeader => Future[Result])(rh: RequestHeader): Future[Result] =
-    getFirebaseUid(rh) match {
+    getFirebaseUid(rh.headers) match {
       case Some(uid) => addUserIdToHeader(uid).flatMap {
         case Left(value) => Future(value)
         case Right(value) => nextFilter(rh).map(_.withHeaders(value))
