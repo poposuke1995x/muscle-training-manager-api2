@@ -4,7 +4,7 @@ import com.google.inject.Inject
 import domain.support.{DbError, EntityNotFoundError, Error}
 import domain.training.lifecycle.LiftTypeRepository
 import domain.user.{FirebaseUid, UserService}
-import usecase.dto.{LiftTypeRequestModel, LiftTypeResponseModel}
+import usecase.dto.{LiftTypeCreateRequestModel, LiftTypeResponseModel}
 
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -12,7 +12,7 @@ case class CreateLiftTypeUseCase @Inject()(repository: LiftTypeRepository)
     (userService: UserService)
     (implicit ec: ExecutionContext) {
 
-  def apply(uid: FirebaseUid)(liftTypeRequestModel: LiftTypeRequestModel): Future[Either[Error, LiftTypeResponseModel]] =
+  def apply(uid: FirebaseUid)(liftTypeRequestModel: LiftTypeCreateRequestModel): Future[Either[Error, LiftTypeResponseModel]] =
     userService.getUser(uid).flatMap {
       case None => Future.successful(Left(EntityNotFoundError()))
       case Some(user) => liftTypeRequestModel.toEntity(user.id) match {

@@ -9,14 +9,12 @@ import io.circe.parser.decode
 import play.api.libs.circe.Circe
 import play.api.mvc._
 import shapeless.Lazy.apply
-import usecase.dto.{LiftTypeRequestModel, TrainingMenuRequestModel}
+import usecase.dto.{LiftTypeCreateRequestModel, TrainingMenuRequestModel}
 
 import scala.concurrent.{ExecutionContext, Future}
 
 abstract class CirceController @Inject()
-(cc: ControllerComponents)
-    (implicit ec: ExecutionContext) extends AbstractController(cc) with Circe {
-
+(cc: ControllerComponents)(implicit ec: ExecutionContext) extends AbstractController(cc) with Circe {
   def getFirebaseUidAction(headers: Headers)(f: FirebaseUid => Future[Result]): Future[Result] =
     getFirebaseUid(headers) match {
       case None => Future(Forbidden)
